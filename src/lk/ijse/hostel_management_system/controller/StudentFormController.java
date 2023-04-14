@@ -25,6 +25,7 @@ public class StudentFormController {
     public JFXTextField txtAddress;
     public JFXTextField txtContact;
     public JFXTextField txtDOB;
+    public JFXButton btnUpdate;
 
     public void btnAddStudentOnAction(ActionEvent actionEvent) {
     }
@@ -33,5 +34,8 @@ public class StudentFormController {
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnUpdateOnAction(ActionEvent actionEvent) {
     }
 }
