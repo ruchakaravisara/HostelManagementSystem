@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel_management_system.controller.UserSignUpController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#354e65" height="800.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="530.0" />
+      <Label layoutX="65.0" layoutY="60.0" prefHeight="88.0" prefWidth="383.0" text="Hello Welcome" textFill="WHITE">
+         <font>
+            <Font size="56.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUserID" layoutX="661.0" layoutY="164.0" prefHeight="52.0" prefWidth="398.0" promptText="User ID" style="-fx-background-color: gray;">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtUserName" layoutX="661.0" layoutY="258.0" prefHeight="52.0" prefWidth="398.0" promptText="User Name" style="-fx-background-color: gray;">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtUserPassword" layoutX="661.0" layoutY="362.0" prefHeight="52.0" prefWidth="398.0" promptText="User Password" style="-fx-background-color: gray;">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtUserEmail" layoutX="661.0" layoutY="460.0" prefHeight="52.0" prefWidth="398.0" promptText="User email" style="-fx-background-color: gray;">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <JFXButton fx:id="btnNewSign" buttonType="RAISED" layoutX="1116.0" layoutY="68.0" onAction="#btnNewSignID" prefHeight="52.0" prefWidth="106.0" style="-fx-background-color: #46da4e;" text="New ID">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnSignUpID" buttonType="RAISED" layoutX="1044.0" layoutY="605.0" onAction="#btnSignUpOnAction" prefHeight="52.0" prefWidth="106.0" style="-fx-background-color: #157bae;" text="Sign Up">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnSign1" buttonType="RAISED" layoutX="870.0" layoutY="605.0" onAction="#btnLoginOnAction" prefHeight="52.0" prefWidth="106.0" style="-fx-background-color: #97b821;" text="Next" textFill="#fcfcfc">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

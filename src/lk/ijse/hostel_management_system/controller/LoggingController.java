@@ -11,4 +11,7 @@ public class LoggingController {
 
     public void btnSignInOnAction(ActionEvent actionEvent) {
     }
+
+    public void btnUserSignUpOnAction(ActionEvent actionEvent) {
+    }
 }
