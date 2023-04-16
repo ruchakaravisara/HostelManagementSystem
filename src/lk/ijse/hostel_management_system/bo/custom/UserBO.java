@@ -1,4 +1,7 @@
 package lk.ijse.hostel_management_system.bo.custom;
 
-public interface UserBO {
+import lk.ijse.hostel_management_system.bo.SuperBO;
+
+public interface UserBO extends SuperBO {
+
 }

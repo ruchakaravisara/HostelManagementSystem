@@ -8,10 +8,7 @@ import lombok.ToString;
 
 import java.util.Date;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@ToString
+
 public class StudentDetailsDTO {
     private String studentId;
     private String name;
@@ -21,8 +18,75 @@ public class StudentDetailsDTO {
     private String roomId;
     private Room room;
 
-    /*public void setRoom(Room room){
-        this.room =room;
+    public StudentDetailsDTO() {
+    }
+
+    public StudentDetailsDTO(String studentId, String name, String contact, Date date, String resId, Room room) {
+        this.studentId = studentId;
+        this.name = name;
+        this.contact = contact;
+        this.date = date;
+        this.resId = resId;
+        this.room = room;
         roomId=room.getId();
-    }*/
+    }
+
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getResId() {
+        return resId;
+    }
+
+    public void setResId(String resId) {
+        this.resId = resId;
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+        roomId=room.getId();
+    }
+
 }
