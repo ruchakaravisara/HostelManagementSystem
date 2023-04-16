@@ -5,9 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @ToString
 @NoArgsConstructor
@@ -27,4 +27,8 @@ public class Room {
 
     @Column(name = "Qty")
     private int qty;
+
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "room")
+    private List<Reservation> reservationList=new ArrayList<>();
 }

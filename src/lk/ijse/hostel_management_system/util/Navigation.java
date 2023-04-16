@@ -55,6 +55,6 @@ public class Navigation {
 
     }
     private static void initUI(String location) throws IOException {
-        Navigation.DashBoard.getChildren().add(FXMLLoader.load(Navigation.class.getResource("/lk/ijse/hostel_management_system/view" + location)));
+        Navigation.DashBoard.getChildren().add(FXMLLoader.load(Navigation.class.getResource("/lk/ijse/hostel_management_system/view/"+location)));
     }
 }

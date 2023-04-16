@@ -21,8 +21,8 @@ public class StudentDetailsDTO {
     private String roomId;
     private Room room;
 
-    public void setRoom(Room room){
+    /*public void setRoom(Room room){
         this.room =room;
         roomId=room.getId();
-    }
+    }*/
 }

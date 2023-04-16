@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,4 +20,12 @@ public class Reservation {
     private Date date;
     @Column(name = "status")
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "studentId")
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "roomTypeId")
+    private Room room;
 }
