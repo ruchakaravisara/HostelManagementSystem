@@ -122,7 +122,38 @@ public class ReservationBOImpl implements ReservationBO {
 
     @Override
     public boolean updateReservation(ReservationDTO reservationDTO) {
-        return false;
+        session= SessionFactoryConfigaration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+        try {
+            reservationDAO.setSession(session);
+            reservationDAO.update(new Reservation(
+                    reservationDTO.getResId(),
+                    reservationDTO.getDate(),
+                    reservationDTO.getStatus(),
+
+                    new Student(
+                            reservationDTO.getStudentDTO().getId(),
+                            reservationDTO.getStudentDTO().getName(),
+                            reservationDTO.getStudentDTO().getAddress(),
+                            reservationDTO.getStudentDTO().getContactNo(),
+                            reservationDTO.getStudentDTO().getDob(),
+                            reservationDTO.getStudentDTO().getGender()
+                    ),
+                    new Room(
+                            reservationDTO.getRoomDTO().getId(),
+                            reservationDTO.getRoomDTO().getType(),
+                            reservationDTO.getRoomDTO().getKeyMoney(),
+                            reservationDTO.getRoomDTO().getQty()
+                    )
+            )
+            );
+            session.close();
+            return true;
+        } catch (Exception e) {
+            transaction.rollback();
+            session.close();
+            return false;
+        }
     }
 
     @Override
