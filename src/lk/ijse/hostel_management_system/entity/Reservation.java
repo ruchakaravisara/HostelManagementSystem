@@ -28,4 +28,7 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "roomTypeId")
     private Room room;
+
+    public Reservation(String resId, Date date, String status) {
+    }
 }

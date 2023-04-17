@@ -158,27 +158,77 @@ public class ReservationBOImpl implements ReservationBO {
 
     @Override
     public RoomDTO getRoom(String id) {
-        return null;
+        try {
+            session= SessionFactoryConfigaration.getInstance().getSession();
+            Transaction transaction=session.beginTransaction();
+            roomDAO.setSession(session);
+            Room room=roomDAO.getObject(id);
+            transaction.commit();
+            session.close();
+            return new RoomDTO(
+                    room.getId(),
+                    room.getType(),
+                    room.getKeyMoney(),
+                    room.getQty()
+            );
+        } catch (Exception e) {
+            session.close();
+            return null;
+        }
     }
 
     @Override
     public boolean deleteReservation(ReservationDTO reservationDTO) {
-        return false;
+        session= SessionFactoryConfigaration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+        try {
+            reservationDAO.setSession(session);
+            reservationDAO.delete(new Reservation(
+                    reservationDTO.getResId(),
+                    reservationDTO.getDate(),
+                    reservationDTO.getStatus())
+            );
+            transaction.commit();
+            session.close();
+            return true;
+        } catch (Exception e) {
+            transaction.rollback();
+            session.close();
+            return false;
+        }
     }
 
     @Override
-    public String generateNextReservationID() {
-        return null;
+    public String generateNextReservationID() throws Exception {
+        session= SessionFactoryConfigaration.getInstance().getSession();
+        reservationDAO.setSession(session);
+        return reservationDAO.generateID();
     }
+
 
     @Override
     public List<String> getStudentIds() {
-        return null;
+       try {
+           session=SessionFactoryConfigaration.getInstance().getSession();
+           studentDAO.setSession(session);
+           session.close();
+           return studentDAO.getIds();
+       } catch (Exception e) {
+           session.close();
+           return null;
+       }
     }
 
     @Override
     public List<String> getRoomIds() {
+    try {
+        session=SessionFactoryConfigaration.getInstance().getSession();
+        roomDAO.setSession(session);
+        return roomDAO.getIds();
+    } catch (Exception e) {
+        session.close();
         return null;
+    }
     }
 
     @Override
