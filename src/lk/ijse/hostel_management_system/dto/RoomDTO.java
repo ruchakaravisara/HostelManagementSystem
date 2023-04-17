@@ -12,6 +12,9 @@ public class RoomDTO {
     private String keyMoney;
     private int qty;
 
+    public RoomDTO() {
+    }
+
     public RoomDTO(String text, String txtUserNameText, String txtUserPasswordText, String txtUserContactText) {
     }
 

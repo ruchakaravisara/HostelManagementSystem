@@ -10,9 +10,12 @@ import lk.ijse.hostel_management_system.dto.ReservationDTO;
 import lk.ijse.hostel_management_system.dto.RoomDTO;
 import lk.ijse.hostel_management_system.dto.StudentDTO;
 import lk.ijse.hostel_management_system.entity.Reservation;
+import lk.ijse.hostel_management_system.entity.Room;
+import lk.ijse.hostel_management_system.entity.Student;
 import lk.ijse.hostel_management_system.projection.StudentDetailsDTO;
 import lk.ijse.hostel_management_system.util.SessionFactoryConfigaration;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,13 +59,65 @@ public class ReservationBOImpl implements ReservationBO {
     }
 
     @Override
-    public String saveReservation(ReservationDTO reservationDTO) {
-        return null;
+    public String saveReservation(ReservationDTO reservationDTO) throws Exception  {
+        session= SessionFactoryConfigaration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        try {
+            reservationDAO.setSession(session);
+            reservationDAO.save(new Reservation(
+                            reservationDTO.getResId(),
+                            reservationDTO.getDate(),
+                            reservationDTO.getStatus(),
+                            new Student(
+                                   reservationDTO.getStudentDTO().getId(),
+                                    reservationDTO.getStudentDTO().getName(),
+                                    reservationDTO.getStudentDTO().getAddress(),
+                                    reservationDTO.getStudentDTO().getContactNo(),
+                                    reservationDTO.getStudentDTO().getDob(),
+                                    reservationDTO.getStudentDTO().getGender()
+                            ),
+                            new Room(
+                                    reservationDTO.getRoomDTO().getId(),
+                                    reservationDTO.getRoomDTO().getType(),
+                                    reservationDTO.getRoomDTO().getKeyMoney(),
+                                    reservationDTO.getRoomDTO().getQty()
+                            )
+                    )
+            );
+            transaction.commit();
+            session.close();
+            return String.valueOf(true);
+        }catch (Exception e){
+            transaction.rollback();
+            session.close();
+            return null;
+        }
     }
 
     @Override
     public StudentDTO getStudent(String id) {
-        return null;
+       try{
+           session =SessionFactoryConfigaration.getInstance().getSession();
+           Transaction transaction =session.beginTransaction();
+           studentDAO.setSession(session);
+           Student student = studentDAO.getObject(id);
+           transaction.commit();
+           session.close();
+
+           return new StudentDTO(
+                   student.getId(),
+                   student.getName(),
+                   student.getAddress(),
+                   student.getContactNo(),
+                   student.getDob(),
+                   student.getGender()
+           );
+
+       } catch (Exception e) {
+           session.close();
+           return null;
+       }
     }
 
     @Override
