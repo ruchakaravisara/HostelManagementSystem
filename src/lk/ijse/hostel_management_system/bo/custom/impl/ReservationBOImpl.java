@@ -232,27 +232,88 @@ public class ReservationBOImpl implements ReservationBO {
     }
 
     @Override
-    public List<StudentDTO> getAllStudent() {
-        return null;
+    public List<StudentDTO> getAllStudent() throws Exception {
+        session= SessionFactoryConfigaration.getInstance().getSession();
+        studentDAO.setSession(session);
+        List<Student> allStudent = studentDAO.loadAll();
+        List<StudentDTO>studentDTOList=new ArrayList<>();
+        for (Student student :allStudent){
+            studentDTOList.add(new StudentDTO(
+
+                    student.getId(),
+                    student.getName(),
+                    student.getAddress(),
+                    student.getContactNo(),
+                    student.getDob(),
+                    student.getGender())
+            );
+        }
+        return studentDTOList;
     }
 
     @Override
-    public List<RoomDTO> getAllRoom() {
-        return null;
+    public List<RoomDTO> getAllRoom() throws Exception {
+        session= SessionFactoryConfigaration.getInstance().getSession();
+        roomDAO.setSession(session);
+        List<Room>allRooms=roomDAO.loadAll();
+        List<RoomDTO>roomDTOS=new ArrayList<>();
+        for (Room room : allRooms){
+
+            roomDTOS.add(new RoomDTO(
+                    room.getId(),
+                    room.getType(),
+                    room.getKeyMoney(),
+                    room.getQty())
+            );
+        }
+        return roomDTOS;
     }
 
     @Override
     public boolean updateRoomQty(RoomDTO roomDTO) {
-        return false;
+        session= SessionFactoryConfigaration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+        try {
+            roomDAO.setSession(session);
+
+            roomDAO.update(new Room(
+                    roomDTO.getId(),
+                    roomDTO.getType(),
+                    roomDTO.getKeyMoney(),
+                    roomDTO.getQty())
+            );
+            transaction.commit();
+            session.close();
+            return true;
+        } catch (Exception e) {
+            transaction.rollback();
+            session.close();
+            return false;
+        }
     }
 
     @Override
     public boolean checkStatusClick(String id, String status) {
-        return false;
+        session=SessionFactoryConfigaration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+        boolean isUpdate=false;
+
+        try {
+            reservationDAO.setSession(session);
+            isUpdate =reservationDAO.changeCheckBOXValue(id,status);
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            transaction.rollback();
+            session.close();
+        }
+        return isUpdate;
     }
 
     @Override
     public List<StudentDetailsDTO> getAllProjection() {
-        return null;
+        session=SessionFactoryConfigaration.getInstance().getSession();
+        return queryDAO.getAllStudentProjection();
+
     }
 }
