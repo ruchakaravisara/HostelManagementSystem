@@ -39,6 +39,7 @@ public class StudentFormController {
     StudentBO studentBO =(StudentBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.Student);
 
     public void initialize(){
+        getData();
         loadAllStudents();
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));

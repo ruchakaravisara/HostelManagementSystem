@@ -33,7 +33,7 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <JFXTextField layoutX="65.0" layoutY="201.0" prefHeight="39.0" prefWidth="230.0" />
+      <JFXTextField fx:id="txtRoomQTY" layoutX="65.0" layoutY="201.0" prefHeight="39.0" prefWidth="230.0" />
       <Label layoutX="462.0" layoutY="171.0" prefHeight="28.0" prefWidth="160.0" text="Status">
          <font>
             <Font size="23.0" />
