@@ -3,6 +3,7 @@ package lk.ijse.hostel_management_system.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.hostel_management_system.bo.BOFactory;
 import lk.ijse.hostel_management_system.bo.custom.UserBO;
@@ -33,9 +34,8 @@ public class LoggingController {
                     Navigation.navigation(Routes.DASHBOARD,Loging);
                 }
                 else {
-                    txtUserName.setText("Invalid Password !");
-                    txtPassword.setText("Invalid UserName !");
-
+                    new Alert(Alert.AlertType.INFORMATION, "Something Wrong").show();
+                    //check
                 }
             }catch (Exception e){
                 e.printStackTrace();
