@@ -14,6 +14,7 @@ import lk.ijse.hostel_management_system.bo.BOFactory;
 import lk.ijse.hostel_management_system.bo.custom.RoomBO;
 import lk.ijse.hostel_management_system.dto.RoomDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RoomFormController {
@@ -46,18 +47,17 @@ public class RoomFormController {
 
     private void loadAllRoom() throws Exception {
         tblRoom.getItems().clear();
+
         List<RoomDTO> studentDTOS = roomBO.loadAllRoom();
-        ObservableList<RoomDTO> observableList =FXCollections.observableList(studentDTOS);
+        ObservableList<RoomDTO> observableList= FXCollections.observableList(studentDTOS);
         tblRoom.setItems(observableList);
+
     }
     void clear(){
         txtRoomId.clear();
-        txtType.clear();;
+        txtType.clear();
         txtKeyMoney.clear();
         txtQty.clear();
-    }
-
-    public void btnAddRoomOnaction(ActionEvent actionEvent) {
     }
 
     public void btnaddOnAction(ActionEvent actionEvent) throws Exception {
@@ -85,6 +85,7 @@ public class RoomFormController {
                 txtKeyMoney.getText(),
                 Integer.parseInt(txtQty.getText())
         );
+     //   System.out.println(roomDTO);
         boolean isUpdate = roomBO.updateRoom(roomDTO);
         if (isUpdate){
             new Alert(Alert.AlertType.CONFIRMATION, "Room Update Successfully!").show();

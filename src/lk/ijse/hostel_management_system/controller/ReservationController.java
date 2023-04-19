@@ -73,21 +73,21 @@ public class ReservationController {
         ColUnpaidStudentID.setCellValueFactory(new PropertyValueFactory<>("studentId"));
         ColUnpaidStudentName.setCellValueFactory(new PropertyValueFactory<>("name"));
         ColUnpaidDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        }
+    }
 
-        void setCheckStatus(){
-            tblUnpaidStudents.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                btnsave.setText(newValue!=null ? "update" : "save");
-                btnsave.setDisable(newValue==null);
+    void setCheckStatus(){
+        tblUnpaidStudents.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            btnsave.setText(newValue!=null ? "update" : "save");
+            btnsave.setDisable(newValue==null);
 
-                if (newValue != null){
-                    cbxStatus.setDisable(false);
-                    id= newValue.getResId();
-                }
-            });
-        }
+            if (newValue != null){
+                cbxStatus.setDisable(false);
+                id= newValue.getResId();
+            }
+        });
+    }
 
-        private void loadAllStudent(){
+    private void loadAllStudent(){
         try {
             ArrayList<StudentDTO> allStudent =(ArrayList<StudentDTO>) reservationBO.getAllStudent();
             for (StudentDTO s :allStudent){
@@ -100,9 +100,9 @@ public class ReservationController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        }
+    }
 
-        private void loadAllRooms(){
+    private void loadAllRooms(){
         try {
             ArrayList<RoomDTO>allRooms= (ArrayList<RoomDTO>) reservationBO.getAllRoom();
             for (RoomDTO r :allRooms){
@@ -114,11 +114,11 @@ public class ReservationController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        }
-        private StudentDTO getStudentDTO() throws Exception {
-            String studentId= (String) cmdStudentID.getSelectionModel().getSelectedItem();
-            return reservationBO.getStudent(studentId);
-        }
+    }
+    private StudentDTO getStudentDTO() throws Exception {
+        String studentId= (String) cmdStudentID.getSelectionModel().getSelectedItem();
+        return reservationBO.getStudent(studentId);
+    }
     private RoomDTO getRoomDTO() throws Exception {
         String roomId= (String) cmdRoomTypeID.getSelectionModel().getSelectedItem();
         return reservationBO.getRoom(roomId);
