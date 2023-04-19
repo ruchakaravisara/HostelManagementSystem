@@ -6,8 +6,12 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.hostel_management_system.bo.BOFactory;
 import lk.ijse.hostel_management_system.bo.custom.ReservationBO;
 import lk.ijse.hostel_management_system.dto.ReservationDTO;
@@ -15,10 +19,8 @@ import lk.ijse.hostel_management_system.dto.RoomDTO;
 import lk.ijse.hostel_management_system.dto.StudentDTO;
 import lk.ijse.hostel_management_system.projection.StudentDetailsDTO;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 public class ReservationController {
 
@@ -45,6 +47,8 @@ public class ReservationController {
     public JFXTextField txtReservationID;
     public JFXButton btnAddNewReservation;
     public JFXTextField txtRoomQTY;
+    public AnchorPane reserv;
+    public Button btnBack;
 
     private StudentDTO studentData;
     private RoomDTO roomData;
@@ -261,5 +265,10 @@ public class ReservationController {
                 studentData,
                 roomData
         );
+    }
+
+    public void btnBackOnAction(ActionEvent actionEvent) throws IOException {
+        Stage stage =(Stage)reserv.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/lk/ijse/hostel_management_system/view/Dashbord.fxml")))));
     }
 }
